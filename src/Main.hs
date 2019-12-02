@@ -16,9 +16,10 @@ import Tesseractic.Utils (decodeIO)
 
 main :: IO ()
 main = getArgs >>= \case
-    config:"init"    :args -> init config args
-    config:"status"  :args -> withCube (runApp status) config args
-    config:"snapshot":args -> withCube (runApp snapshot) config args
+    config:"init"      :args -> init config args
+    config:"status"    :args -> withCube (runApp status) config args
+    config:"snapshot"  :args -> withCube (runApp snapshot) config args
+    config:"purgecache":args -> withCube (runApp purgecache) config args
     _:s:_ -> fail $ "Unknown command: " <> s
     _:_   -> fail "Missing command"
     _     -> fail "Missing config file path"
@@ -51,3 +52,6 @@ status = do
     getPath >>= logInfo . ("Path: " <>) . fromString
     getStorage >>= logInfo . ("Storage: " <>) . fromString
     getSnapshot >>= logInfo . ("Snapshot: " <>) . displayShow
+
+purgecache :: App ()
+purgecache = modifyCache (const Map.empty) >> getSnapshot >>= commit
