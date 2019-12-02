@@ -1,0 +1,45 @@
+name: tesseractic
+version: 0.0.0.0
+github: Smart-Hypercube/tesseractic
+author: Hypercube
+maintainer: hypercube@0x01.me
+copyright: 2019 Hypercube
+
+source-dirs: src
+
+executables:
+  tesseractic:
+    main: Main.hs
+
+ghc-options:
+- -Wall
+- -Werror
+- -Wcompat
+- -Widentities
+- -Wincomplete-record-updates
+- -Wincomplete-uni-patterns
+- -Wmissing-export-lists
+- -Wpartial-fields
+- -Wredundant-constraints
+- -fhide-source-paths
+- -freverse-errors
+
+default-extensions:
+- BangPatterns
+- DeriveGeneric
+- GeneralizedNewtypeDeriving
+- InstanceSigs
+- LambdaCase
+- MultiWayIf
+- NoImplicitPrelude
+- OverloadedStrings
+- ScopedTypeVariables
+- TypeSynonymInstances
+
+dependencies:
+- base
+- cereal
+- cryptonite
+- memory
+- rio
+- unix-compat
